@@ -14,7 +14,7 @@ class mztu():
 
     def mkDir(self, title):
         path = str(title).strip()
-        if path.find(':')!=-1:
+        if path.find(':') != -1:
             print("11111111111111111111111")
             path = path.replace(':', '-')
         elif path.find('?') != -1:
@@ -22,16 +22,16 @@ class mztu():
             path = path.replace('?', '-')
         elif path.find('*') != -1:
             print("2222222222222222222")
-            path = path.replace('*', '-')
+            # path = path.replace('*', '-')
         else:
             print(path)
         if not os.path.exists(os.path.join("D:\mzitu", path)):
             os.makedirs(os.path.join("D:\mzitu", path))
             os.chdir("D:\mzitu\\" + path)
-            return True;
+            return True
         else:
             print(path + "文件夹已经存在")
-            return False;
+            return False
 
     def save(self, image_url):
         name = image_url[-9:-4]
@@ -52,7 +52,7 @@ class mztu():
             title = a.get_text()
             print(title)
             next = self.mkDir(title)
-            if(next):
+            if (next):
                 href = a['href']
                 self.href = href
                 page_html = self.myRequest(href)
@@ -68,5 +68,8 @@ class mztu():
                     self.save(image_url)
 
 
-mzitu = mztu()
-mzitu.all_url('http://www.mzitu.com/all/')
+mzitu = None
+while (True):
+    if mzitu == None:
+        mzitu = mztu()
+        mzitu.all_url('http://www.mzitu.com/all/')
