@@ -14,8 +14,17 @@ class mztu():
 
     def mkDir(self, title):
         path = str(title).strip()
-        if path.find('?'):
+        if path.find(':')!=-1:
+            print("11111111111111111111111")
+            path = path.replace(':', '-')
+        elif path.find('?') != -1:
+            print("2222222222222222222")
             path = path.replace('?', '-')
+        elif path.find('*') != -1:
+            print("2222222222222222222")
+            path = path.replace('*', '-')
+        else:
+            print(path)
         if not os.path.exists(os.path.join("D:\mzitu", path)):
             os.makedirs(os.path.join("D:\mzitu", path))
             os.chdir("D:\mzitu\\" + path)
